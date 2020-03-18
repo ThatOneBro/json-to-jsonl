@@ -16,7 +16,7 @@ const defaultGetArray = x => x
 const writeJSONLines = (jsonFilename, getArray=defaultGetArray) => {
   const json = getJSON(jsonFilename)
   const arr = validateArray(getArray(json))
-  const jsonlFilename = jsonFilename.replace(/.json/g, '.jsonl')
+  const jsonlFilename = jsonFilename.replace(/.json$/, '.jsonl')
   const writeStream = fs.createWriteStream(jsonlFilename)
   arr.map(x => writeStream.write(`${JSON.stringify(x)}\n`))
   writeStream.end()
